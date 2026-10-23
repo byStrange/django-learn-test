@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+ <head>
+     <style>
+     ul {
+         list-style: none;
+     }
+     .messages .error {
+         color: red;
+     }
+     </style>
+  <title>Login - BookShop Bomba</title>
+ </head>
+ <body>
+     
+      <form action="/login/" method="POST">
+          <input type="text" name="username" placeholder="Enter your username">
+          <input type="password" name="password" placeholder="Enter your password">
+          <button class="SignUpBtn">Login</button>
+          <p class="IHaveNotAccount">I have not an account <a href="./sign.html">Login</a></p>
+
+          {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+      </form>
+ </body>
+</html>

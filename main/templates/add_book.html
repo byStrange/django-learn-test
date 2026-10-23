@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangi kitob qo‘shish — BookShop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #f5f0e8;
+            background-image:
+                radial-gradient(ellipse at top, #faf6f0 0%, transparent 60%),
+                linear-gradient(180deg, #f5f0e8 0%, #ebe4d8 100%);
+            min-height: 100vh;
+            color: #2c2c2c;
+        }
+
+        .header {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 0 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo span.red { color: #e63946; }
+        .logo span.orange {
+            color: #f4a261;
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .nav a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        .main {
+            max-width: 520px;
+            margin: 60px auto;
+            padding: 0 24px 80px;
+        }
+
+        .form-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px 36px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .form-subtitle {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e0d8cc;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            background: #faf8f5;
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #e63946;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.12);
+        }
+
+        input[type="text"]::placeholder {
+            color: #bbb;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: #e63946;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            background: #d62839;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.3);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #e63946;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="/book-list/" class="logo">
+                <span class="red">Book</span>Shop
+                <span class="orange">BOMBA</span>
+            </a>
+            <nav class="nav">
+                <a href="/book-list/">← Katalogga qaytish</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="form-card">
+            <h1 class="form-title">Yangi kitob</h1>
+            <p class="form-subtitle">Katalogga yangi kitob qo‘shing</p>
+
+            <form action="/add-book/" method="post">
+                <div class="form-group">
+                    <label for="name">Kitob nomi</label>
+                    <input type="text" id="name" name="name" placeholder="Masalan: O‘tkan kunlar" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="muallif">Muallif</label>
+                    <input type="text" id="muallif" name="muallif" placeholder="Masalan: Abdulla Qodiriy" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Kitobni saqlash</button>
+            </form>
+
+            <a href="/book-list/" class="back-link">← Barcha kitoblarni ko‘rish</a>
+        </div>
+    </main>
+</body>
+</html>
