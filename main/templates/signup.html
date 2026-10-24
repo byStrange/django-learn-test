@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro‘yxatdan o‘tish — BookShop BOMBA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #f5f0e8;
+            background-image:
+                radial-gradient(ellipse at top, #faf6f0 0%, transparent 60%),
+                linear-gradient(180deg, #f5f0e8 0%, #ebe4d8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c2c2c;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: #fff;
+            width: 100%;
+            max-width: 420px;
+            padding: 48px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 4px 20px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #c45d3e;
+        }
+
+        .subtitle {
+            color: #6b6b6b;
+            font-size: 15px;
+            margin-bottom: 36px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid #e5e0d8;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            background: #fafafa;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #c45d3e;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(196, 93, 62, 0.08);
+        }
+
+        .btn {
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+        }
+
+        .btn:hover {
+            background: #c45d3e;
+            transform: translateY(-1px);
+        }
+
+        .switch-link {
+            margin-top: 24px;
+            font-size: 14px;
+            color: #6b6b6b;
+        }
+
+        .switch-link a {
+            color: #c45d3e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .switch-link a:hover {
+            text-decoration: underline;
+        }
+
+                .messages {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .messages .error {
+            background: #fef2f2;
+            color: #b91c1c;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            border: 1px solid #fecaca;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-card">
+        <div class="logo">BookShop <span>BOMBA</span></div>
+        <p class="subtitle">Yangi hisob yarating</p>
+
+        <form action="/signup/" method="POST">
+            <input type="text" name="username" placeholder="Foydalanuvchi nomi" required>
+            <input type="password" name="password" placeholder="Parol" required>
+            <input type="password" name="password_confirm_ui" placeholder="Parolni tasdiqlang" required>
+            <button type="submit" class="btn">Ro‘yxatdan o‘tish</button>
+        </form>
+
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p class="switch-link">Hisobingiz bormi? <a href="/login/">Kirish</a></p>
+    </div>
+</body>
+</html>

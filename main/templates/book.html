@@ -189,7 +189,7 @@
         <div class="header-inner">
             <a href="/book-list/" class="logo">
                 <span class="red">Book</span>Shop
-                <span class="orange">BOMBA</span>
+                <span class="orange"> {{book.user.username}}</span>
             </a>
             <nav class="nav">
                 <a href="/book-list/">← Katalog</a>
@@ -201,7 +201,7 @@
     <main class="main">
         <div class="detail-card">
             <div class="detail-cover">
-                <div class="detail-id">#{{book.id}}</div>
+                <div class="detailB-id">#{{book.id}}</div>
                 <div class="detail-title-cover">{{book.name}}</div>
                 <div class="detail-author-cover">{{book.muallif }}</div>
             </div>
@@ -212,11 +212,11 @@
                 <div class="detail-label">Muallif</div>
                 <div class="detail-value">{{book.muallif}}</div>
 
+                <div class="detail-label">URL</div>
+                <div class="detail-value"><a href="https://{{book.url}}">{{book.url}}</a></div>
+
                 <div class="detail-label">Yaratilgan sanasi</div>
                 <div class="detail-value">{{book.yaratilgan_sanasi}}</div>
-
-
-                {{book.user.username}}
 
                 <a href="/book-list/" class="back-btn">← Katalogga qaytish</a>
             </div>
