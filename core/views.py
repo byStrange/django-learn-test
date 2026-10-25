@@ -10,7 +10,7 @@ from main.models import Book
 def index(request):
     """Bosh sahifa – loyihaning kirish sahifasi."""
     if request.user.is_authenticated:
-        return redirect("/book-list/") 
+        return redirect("/book-list/")
     return redirect("/login/")
 
 def check_auth(request):
@@ -24,8 +24,12 @@ def book_list(request: HttpRequest):
     user_id = request.user.id
     books = Book.objects.filter(user_id=user_id).order_by("-id")
 
+    is_public = request.GET.get('public') == 'true'
+    if is_public:
+        books = Book.objects.filter(public=True).order_by("-id")
+
     if request.method == "GET":
-        return render(request,"books-list.html", {"books": books})
+        return render(request,"books-list.html", {"books": books, "is_public": is_public})
 
 
 def add_book(request: HttpRequest):
@@ -37,11 +41,20 @@ def add_book(request: HttpRequest):
 
     elif request.method == "POST":
         name1 = request.POST.get("name")
-        muallif = request.POST.get("muallif")
-        url = request.POST.get("url")
+        url: str = request.POST.get("url")
+        public = request.POST.get("public")
+
+        if url.startswith("https://"):
+            url = url[8:]
+        elif url.startswith("http://"):
+            url = url[7:]
+        if public  == "on":
+            public = True
+        else:
+            public = False
 
         try:
-            b1 = Book(name=name1, muallif=muallif, user_id=request.user.id, url=url)
+            b1 = Book(name=name1, user_id=request.user.id, url=url,public=public)
             b1.save()
         except Exception as err:
             print(err)
@@ -55,12 +68,19 @@ def book_page(request, id):
     if request.user.is_authenticated == False:
         return redirect("/login/")
 
+
     try:
         book = Book.objects.get(id=id)
+
+        if book.public:
+            return render(request, "book.html", {"book": book})
+
+
+        if book.user.id != request.user.id:
+            return HttpResponse('kitob topilmadi')
     except Book.DoesNotExist:
         return HttpResponse('kitob topilmadi')
 
-    return render(request, "book.html", {"book": book})
 
 
 def login(request: HttpRequest):
@@ -69,7 +89,7 @@ def login(request: HttpRequest):
 
     if  request.method == "GET":
         return render(request, "login.html")
-        
+
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -78,7 +98,7 @@ def login(request: HttpRequest):
         except User.DoesNotExist:
             messages.error(request, "Kechirasiz kiritilgan ma'lumotlar xato!")
             return redirect("/login/")
-        
+
         if  user.check_password(password):
             django_login(request, user)
             return redirect('/book-list/')
