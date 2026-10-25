@@ -79,6 +79,7 @@ def book_page(request, id):
 
         if book.user.id != request.user.id:
             return HttpResponse('kitob topilmadi')
+        return render(request, "book.html", {"book": book, "soni": BookView.objects.filter(book=book).count()})
     except Book.DoesNotExist:
         return HttpResponse('kitob topilmadi')
 
