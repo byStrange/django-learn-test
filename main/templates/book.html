@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{book.name} — BookShop BOMBA</title>
+    <title>{{book.name}} — BookShop BOMBA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -201,9 +201,9 @@
     <main class="main">
         <div class="detail-card">
             <div class="detail-cover">
-                <div class="detailB-id">#{{book.id}}</div>
+                <div class="detail-id">#{{book.id}}</div>
                 <div class="detail-title-cover">{{book.name}}</div>
-                <div class="detail-author-cover">{{book.muallif }}</div>
+                <div class="detail-author-cover">{{book.user.username }}</div>
             </div>
             <div class="detail-info">
                 <div class="detail-label">Kitob nomi</div>
