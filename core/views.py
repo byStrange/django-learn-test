@@ -4,8 +4,7 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import redirect, render
 from django.utils.translation.trans_real import re
 from django.contrib import messages
-
-from main.models import Book
+from main.models import Book, BookView
 
 def index(request):
     """Bosh sahifa – loyihaning kirish sahifasi."""
@@ -73,7 +72,9 @@ def book_page(request, id):
         book = Book.objects.get(id=id)
 
         if book.public:
-            return render(request, "book.html", {"book": book})
+            BookView.objects.get_or_create(book=book, user=request.user)
+            soni = BookView.objects.filter(book=book).count()
+            return render(request, "book.html", {"book": book, "soni": soni})
 
 
         if book.user.id != request.user.id:
